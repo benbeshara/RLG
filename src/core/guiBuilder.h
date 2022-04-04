@@ -12,9 +12,10 @@
 
 class guiBuilder {
 public:
-    guiBuilder(const std::string& widget, nlohmann::json props, const std::optional<Widget_Container_Draggable> &parent = std::nullopt);
-
-    Widget* widget;
+  guiBuilder(const std::string &widget, nlohmann::json props,
+             const std::optional<Widget_Container_Draggable> &parent = std::nullopt);
+  
+  Widget *widget;
 };
 
 

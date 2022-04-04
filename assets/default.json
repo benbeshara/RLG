@@ -1,64 +1,64 @@
 [
-    {
-        "widget": "WG_Window",
-        "props": {
-            "colour": {
-                "r": 128,
-                "g": 128,
-                "b": 128,
-                "a": 128
-            },
-            "focusedColour": {
-                "r": 128,
-                "g": 128,
-                "b": 128,
-                "a": 255
-            },
-            "width": 256,
-            "height": 64,
-            "x": 28,
-            "y": 20
-        },
-        "contains": [
-            {
-                "widget": "WG_TextInput",
-                "props": {
-                    "text": "Input 1 > ",
-                    "x": 25,
-                    "y": 25
-                }
-            }
-        ]
+  {
+    "widget": "WG_Window",
+    "props": {
+      "colour": {
+        "r": 128,
+        "g": 128,
+        "b": 128,
+        "a": 128
+      },
+      "focusedColour": {
+        "r": 128,
+        "g": 128,
+        "b": 128,
+        "a": 255
+      },
+      "width": 256,
+      "height": 64,
+      "x": 28,
+      "y": 20
     },
-    {
-        "widget": "WG_Window",
+    "contains": [
+      {
+        "widget": "WG_TextInput",
         "props": {
-            "colour": {
-                "r": 128,
-                "g": 128,
-                "b": 128,
-                "a": 128
-            },
-            "focusedColour": {
-                "r": 128,
-                "g": 128,
-                "b": 128,
-                "a": 255
-            },
-            "width": 256,
-            "height": 64,
-            "x": 28,
-            "y": 96
-        },
-        "contains": [
-            {
-                "widget": "WG_TextInput",
-                "props": {
-                    "text": "Input 2 > ",
-                    "x": 25,
-                    "y": 25
-                }
-            }
-        ]
-    }
+          "text": "Input 1 > ",
+          "x": 25,
+          "y": 25
+        }
+      }
+    ]
+  },
+  {
+    "widget": "WG_Window",
+    "props": {
+      "colour": {
+        "r": 128,
+        "g": 128,
+        "b": 128,
+        "a": 128
+      },
+      "focusedColour": {
+        "r": 128,
+        "g": 128,
+        "b": 128,
+        "a": 255
+      },
+      "width": 256,
+      "height": 64,
+      "x": 28,
+      "y": 96
+    },
+    "contains": [
+      {
+        "widget": "WG_TextInput",
+        "props": {
+          "text": "Input 2 > ",
+          "x": 25,
+          "y": 25
+        }
+      }
+    ]
+  }
 ]

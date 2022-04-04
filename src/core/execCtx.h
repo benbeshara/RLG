@@ -12,17 +12,23 @@
 
 class execCtx {
 public:
-    execCtx(State* State);
-    void run();
-    void loadBuffer(const std::string& filename);
+  execCtx(State *State);
+  
+  void run();
+  
+  void loadBuffer(const std::string &filename);
 
 protected:
-    State* state;
-    void parseFile(const std::string& fileName);
-    void parseLayout(const nlohmann::json& json, std::optional<uint64_t> parentWidget = std::nullopt);
-    bool verifyBuffer();
-    chaiscript::ChaiScript ctx;
-    std::string commandBuffer;
+  State *state;
+  
+  void parseFile(const std::string &fileName);
+  
+  void parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget = std::nullopt);
+  
+  bool verifyBuffer();
+  
+  chaiscript::ChaiScript ctx;
+  std::string commandBuffer;
 };
 
 #endif //RLG_EXECCTX_H

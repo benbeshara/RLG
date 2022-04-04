@@ -16,13 +16,13 @@ uint64_t State::AddWidget(Widget *widget) {
 void State::KillWidget(uint64_t key) { this->widgetList.erase(key); }
 
 void State::BlurAllWidgets() {
-  for (auto &value : this->widgetList) {
+  for (auto &value: this->widgetList) {
     value.second->Blur();
   }
 }
 
 void State::GameLoop() {
-  for (auto &value : this->widgetList) {
+  for (auto &value: this->widgetList) {
     value.second->FocusCheck();
     value.second->Draw();
     value.second->Step();

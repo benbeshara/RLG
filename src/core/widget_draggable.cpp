@@ -3,7 +3,7 @@
 #include <string>
 
 void Widget_Draggable::detect_drag() {
-  // Are we holding the cutton down in the right spot? Are we focused?
+  // Are we holding the button down in the right spot? Are we focused?
   if (CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
       IsMouseButtonDown(MOUSE_LEFT_BUTTON) && this->focused) {
     this->delta.x = GetMousePosition().x - this->GetDimensions().x;
@@ -21,13 +21,13 @@ void Widget_Draggable::drag() {
     this->detect_drag();
     return;
   }
-
+  
   Rectangle oldDimensions = this->GetDimensions();
   Rectangle draggedDimensions = {GetMousePosition().x - this->delta.x,
                                  GetMousePosition().y - this->delta.y,
                                  oldDimensions.width, oldDimensions.height};
   this->SetDimensions(draggedDimensions);
-
+  
   // See if we've stopped dragging
   this->detect_drag();
 }

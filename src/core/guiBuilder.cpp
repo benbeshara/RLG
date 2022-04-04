@@ -9,7 +9,7 @@
 
 guiBuilder::guiBuilder(const std::string& widget, nlohmann::json props, const std::optional<Widget_Container_Draggable> &parent){
     if(widget == "WG_TextInput"){
-        WGConfig_TextInput* config = new WGConfig_TextInput();
+        auto* config = new WGConfig_TextInput();
 
         config->text = props["text"];
         config->x = props["x"];
@@ -18,7 +18,7 @@ guiBuilder::guiBuilder(const std::string& widget, nlohmann::json props, const st
         this->widget = new WG_TextInput(config);
     }
     if(widget == "WG_Window"){
-        WGConfig_Window* config = new WGConfig_Window();
+        auto* config = new WGConfig_Window();
 
         config->colour.r = props["colour"]["r"];
         config->colour.g = props["colour"]["g"];
