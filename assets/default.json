@@ -1,0 +1,18 @@
+[
+    {
+        "widget": "WG_TextInput",
+        "props": {
+            "text": "Input > ",
+            "x": 500,
+            "y": 350
+        }
+    },
+    {
+        "widget": "WG_TextInput",
+        "props": {
+            "text": "Input 2 > ",
+            "x": 300,
+            "y": 20
+        }
+    }
+]
