@@ -6,7 +6,7 @@
 class Widget_Container_Draggable : public Widget_Draggable {
 public:
   RESIZE SetContainerContentsDimensions();
-  void AddWidget(Widget *widget);
+  uint64_t AddWidget(Widget *widget);
   void DrawWidgets();
   virtual void Draw(){};
   virtual void Step(){};

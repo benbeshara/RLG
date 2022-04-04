@@ -8,8 +8,7 @@
 
 class State {
 protected:
-  std::unordered_map<uint64_t, Widget *> widgetList;
-  uint64_t widgetCount = 0;
+    uint64_t widgetCount = 0;
 
 public:
   uint64_t AddWidget(Widget *);
@@ -21,5 +20,7 @@ public:
   typedef std::unordered_map<uint64_t, Widget *>::const_iterator const_iterator;
   iterator begin() { return widgetList.begin(); }
   iterator end() { return widgetList.end(); }
+
+    std::unordered_map<uint64_t, Widget *> widgetList;
 };
 #endif /* STATE_H */

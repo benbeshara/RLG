@@ -8,16 +8,18 @@
 #include <string>
 #include <chaiscript/chaiscript.hpp>
 #include "state.h"
+#include "json.hpp"
 
 class execCtx {
 public:
     execCtx(State* State);
     void run();
-    void loadBuffer(std::string filename);
+    void loadBuffer(const std::string& filename);
 
 protected:
     State* state;
-    void parseLayout(const std::string& fileName);
+    void parseFile(const std::string& fileName);
+    void parseLayout(const nlohmann::json& json, uint64_t parentWidget = 0);
     bool verifyBuffer();
     chaiscript::ChaiScript ctx;
     std::string commandBuffer;

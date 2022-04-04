@@ -8,10 +8,11 @@
 
 #include "json.hpp"
 #include "widget.h"
+#include "widget_container_draggable.h"
 
 class guiBuilder {
 public:
-    guiBuilder(std::string widget, nlohmann::json props);
+    guiBuilder(const std::string& widget, nlohmann::json props, const std::optional<Widget_Container_Draggable> &parent = std::nullopt);
 
     Widget* widget;
 };

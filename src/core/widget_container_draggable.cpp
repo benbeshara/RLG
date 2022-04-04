@@ -1,9 +1,9 @@
 #include "widget_container_draggable.h"
 
-void Widget_Container_Draggable::AddWidget(Widget *widget) {
+uint64_t Widget_Container_Draggable::AddWidget(Widget *widget) {
   widget->ContainerOffset = {widget->GetDimensions().x,
                              widget->GetDimensions().y};
-  containerState.AddWidget(widget);
+  return containerState.AddWidget(widget);
 }
 
 void Widget_Container_Draggable::DrawWidgets() {
