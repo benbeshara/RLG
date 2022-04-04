@@ -4,7 +4,7 @@ WG_Window::WG_Window(WGConfig_Window *config) { this->config = config; }
 
 void WG_Window::Draw() {
     Color windowColour;
-    if (this->focused && this->config->focusedColour) {
+    if (this->focused) {
         windowColour = *this->config->focusedColour;
     } else {
         windowColour = this->config->colour;

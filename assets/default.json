@@ -1,16 +1,14 @@
 [
     {
-        "widget": "WG_TextInput",
-        "props": {
-            "text": "Input > ",
-            "x": 500,
-            "y": 350
-        }
-    },
-    {
         "widget": "WG_Window",
         "props": {
             "colour": {
+                "r": 128,
+                "g": 128,
+                "b": 128,
+                "a": 128
+            },
+            "focusedColour": {
                 "r": 128,
                 "g": 128,
                 "b": 128,
@@ -25,7 +23,7 @@
             {
                 "widget": "WG_TextInput",
                 "props": {
-                    "text": "Input 2 > ",
+                    "text": "Input 1 > ",
                     "x": 25,
                     "y": 25
                 }
@@ -36,10 +34,16 @@
         "widget": "WG_Window",
         "props": {
             "colour": {
-                "r": 22,
-                "g": 22,
-                "b": 22,
+                "r": 128,
+                "g": 128,
+                "b": 128,
                 "a": 128
+            },
+            "focusedColour": {
+                "r": 128,
+                "g": 128,
+                "b": 128,
+                "a": 255
             },
             "width": 256,
             "height": 64,
@@ -50,7 +54,7 @@
             {
                 "widget": "WG_TextInput",
                 "props": {
-                    "text": "Input 3 > ",
+                    "text": "Input 2 > ",
                     "x": 25,
                     "y": 25
                 }

@@ -19,7 +19,7 @@ public:
 protected:
     State* state;
     void parseFile(const std::string& fileName);
-    void parseLayout(const nlohmann::json& json, uint64_t parentWidget = 0);
+    void parseLayout(const nlohmann::json& json, std::optional<uint64_t> parentWidget = std::nullopt);
     bool verifyBuffer();
     chaiscript::ChaiScript ctx;
     std::string commandBuffer;
