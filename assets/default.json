@@ -17,8 +17,8 @@
                 "a": 255
             },
             "width": 256,
-            "height": 256,
-            "x": 300,
+            "height": 64,
+            "x": 28,
             "y": 20
         },
         "contains": [
@@ -26,6 +26,31 @@
                 "widget": "WG_TextInput",
                 "props": {
                     "text": "Input 2 > ",
+                    "x": 25,
+                    "y": 25
+                }
+            }
+        ]
+    },
+    {
+        "widget": "WG_Window",
+        "props": {
+            "colour": {
+                "r": 22,
+                "g": 22,
+                "b": 22,
+                "a": 128
+            },
+            "width": 256,
+            "height": 64,
+            "x": 28,
+            "y": 96
+        },
+        "contains": [
+            {
+                "widget": "WG_TextInput",
+                "props": {
+                    "text": "Input 3 > ",
                     "x": 25,
                     "y": 25
                 }

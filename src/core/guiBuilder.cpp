@@ -24,6 +24,12 @@ guiBuilder::guiBuilder(const std::string& widget, nlohmann::json props, const st
         config->colour.g = props["colour"]["g"];
         config->colour.b = props["colour"]["b"];
         config->colour.a = props["colour"]["a"];
+        if(props.contains("focusedColour")) {
+            config->focusedColour->r = props["focusedColour"]["r"];
+            config->focusedColour->g = props["focusedColour"]["g"];
+            config->focusedColour->b = props["focusedColour"]["b"];
+            config->focusedColour->a = props["focusedColour"]["a"];
+        }
         config->width = props["width"];
         config->height = props["height"];
         config->x = props["x"];

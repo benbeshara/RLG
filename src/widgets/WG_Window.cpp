@@ -3,8 +3,14 @@
 WG_Window::WG_Window(WGConfig_Window *config) { this->config = config; }
 
 void WG_Window::Draw() {
+    Color windowColour;
+    if (this->focused && this->config->focusedColour) {
+        windowColour = *this->config->focusedColour;
+    } else {
+        windowColour = this->config->colour;
+    }
   DrawRectangle(this->config->x, this->config->y, this->config->width,
-                this->config->height, this->config->colour);
+                this->config->height, windowColour);
 
   DrawWidgets();
 }
@@ -12,12 +18,6 @@ void WG_Window::Draw() {
 void WG_Window::Step() {
   this->drag();
   this->FocusCheck();
-
-  if (this->focused) {
-    this->config->colour = RED;
-  } else {
-    this->config->colour = BLUE;
-  }
 }
 
 Rectangle WG_Window::GetDimensions() {

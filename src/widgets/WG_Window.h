@@ -10,6 +10,7 @@ typedef struct WGConfig_Window {
   int width = 256;
   int height = 196;
   Color colour = BLUE;
+  std::optional<Color> focusedColour;
 
   bool isFocused = false;
 } WGConfig_Window;
