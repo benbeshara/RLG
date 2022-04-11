@@ -1,13 +1,23 @@
+#include <string>
 #include "state.h"
 
 /**
  * Add a widget to the state machine
  * Returns index of widget at end of stack
  **/
-uint64_t State::AddWidget(Widget *widget) {
+uint64_t State::AddWidget(Widget *widget, const std::optional<std::string> &widgetName) {
   this->widgetList.emplace(this->widgetCount, widget);
   this->widgetCount++;
+  
+  if (widgetName && *widgetName != "") {
+    this->namedWidgets.emplace(*widgetName, this->widgetCount - 1);
+  }
+  
   return this->widgetCount - 1;
+}
+
+uint64_t State::GetWidgetIDByName(std::string widgetName) {
+  return this->namedWidgets.find(widgetName)->second;
 }
 
 /**

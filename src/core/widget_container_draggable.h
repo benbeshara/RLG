@@ -8,7 +8,7 @@ class Widget_Container_Draggable : public Widget_Draggable {
 public:
   RESIZE SetContainerContentsDimensions();
   
-  uint64_t AddWidget(Widget *widget);
+  uint64_t AddWidget(Widget *widget, const std::optional<std::string> &widgetName = std::nullopt);
   
   void DrawWidgets();
   

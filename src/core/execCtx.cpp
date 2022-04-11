@@ -16,6 +16,7 @@ void execCtx::parseFile(const std::string &fileName) {
 void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget) {
   for (auto &element: json) {
     std::string widget = element["widget"];
+    auto name = element.value("name", "");
     auto props = element["props"];
     
     auto builder = new guiBuilder(widget, props);
@@ -25,9 +26,9 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
     if (parentWidget) {
       auto parent = dynamic_cast<Widget_Container_Draggable *>(state->widgetList.find(
           *parentWidget)->second);
-      widgetId = parent->AddWidget(builder->widget);
+      widgetId = parent->AddWidget(builder->widget, name);
     } else {
-      widgetId = state->AddWidget(builder->widget);
+      widgetId = state->AddWidget(builder->widget, name);
     }
     
     if (element.contains("contains")) {

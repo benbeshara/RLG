@@ -52,7 +52,7 @@ protected:
   
   void Click() override;
   
-  void doButtonClick();
+  void doButtonClick(std::string widget);
 };
 
 
