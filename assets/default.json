@@ -1,5 +1,14 @@
 [
   {
+    "widget": "WG_Button",
+    "props": {
+      "label": "Button!",
+      "x": 300,
+      "y": 300,
+      "scriptFunction": "doButtonClick()"
+    }
+  },
+  {
     "widget": "WG_Window",
     "props": {
       "colour": {

@@ -18,10 +18,18 @@ void Widget::FocusCheck() {
       CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
       IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
     focused = true;
+    return;
   }
   if (this->focused &&
       !CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
       IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
     focused = false;
+    return;
+  }
+  if (this->focused &&
+      CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
+      IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+    this->Click();
+    return;
   }
 }

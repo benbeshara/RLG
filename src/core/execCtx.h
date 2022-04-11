@@ -17,6 +17,10 @@ public:
   void run();
   
   void loadBuffer(const std::string &filename);
+  
+  void runOnce(std::string cmd);
+  
+  chaiscript::ChaiScript ctx;
 
 protected:
   State *state;
@@ -27,7 +31,6 @@ protected:
   
   bool verifyBuffer();
   
-  chaiscript::ChaiScript ctx;
   std::string commandBuffer;
 };
 

@@ -35,6 +35,8 @@ public:
   virtual RESIZE SetDimensions(Rectangle) { return CANNOT_RESIZE; };
   
   Vector2 ContainerOffset = {0, 0};
+  
+  virtual void Click() {};
 
 protected:
   bool focused;

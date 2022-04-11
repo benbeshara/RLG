@@ -63,3 +63,7 @@ void execCtx::run() {
     ctx.eval(commandBuffer);
   }
 }
+
+void execCtx::runOnce(std::string cmd) {
+  ctx.eval(cmd);
+}

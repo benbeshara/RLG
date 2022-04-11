@@ -1,8 +1,11 @@
 #include "core/execCtx.h"
 #include "core/state.h"
 #include "core/widget.h"
+#include "core/GameStore.h"
 
-int main(void) {
+int main() {
+  GameStore *store = GameStore::GetInstance();
+  
   const int screenWidth = 800;
   const int screenHeight = 450;
   
@@ -10,18 +13,15 @@ int main(void) {
   
   SetTargetFPS(60);
   
-  State gameState;
-  execCtx script(&gameState);
-  
-  script.loadBuffer("./assets/init.chai");
-  script.run();
+  store->getScript()->loadBuffer("./assets/init.chai");
+  store->getScript()->run();
   
   while (!WindowShouldClose()) {
     BeginDrawing();
     
     ClearBackground(RAYWHITE);
     
-    gameState.GameLoop();
+    store->getState()->GameLoop();
     
     EndDrawing();
   }
