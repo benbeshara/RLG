@@ -1,11 +1,11 @@
 #include "widget.h"
 #include "raylib.hpp"
 
-bool Widget::isFocused() { return this->focused; };
+bool Widget::isFocused() const { return this->focused; }
 
-void Widget::Focus() { this->focused = true; };
+void Widget::Focus() { this->focused = true; }
 
-void Widget::Blur() { this->focused = false; };
+void Widget::Blur() { this->focused = false; }
 
 void Widget::Toggle() { this->hidden = !this->hidden; }
 

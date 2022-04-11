@@ -12,7 +12,7 @@
 class GameStore {
 
 protected:
-  GameStore() {};
+  GameStore() = default;;
   
   static GameStore *store;
   

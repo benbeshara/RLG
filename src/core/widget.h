@@ -11,7 +11,7 @@ enum RESIZE {
 class Widget {
 public:
   // Generic functions
-  bool isFocused();
+  [[nodiscard]] bool isFocused() const;
   
   void Focus();
   
@@ -39,8 +39,9 @@ public:
   virtual void Click() {};
 
 protected:
-  bool focused;
-  bool hidden;
+  bool focused{};
+  
+  bool hidden{};
 };
 
 #endif /* WIDGET_H */

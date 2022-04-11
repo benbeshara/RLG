@@ -26,10 +26,10 @@ Rectangle WG_Window::GetDimensions() {
 }
 
 RESIZE WG_Window::SetDimensions(Rectangle newDimensions) {
-  this->config->x = newDimensions.x;
-  this->config->y = newDimensions.y;
-  this->config->width = newDimensions.width;
-  this->config->height = newDimensions.height;
+  this->config->x = static_cast<int>(newDimensions.x);
+  this->config->y = static_cast<int>(newDimensions.y);
+  this->config->width = static_cast<int>(newDimensions.width);
+  this->config->height = static_cast<int>(newDimensions.height);
   
   this->SetContainerContentsDimensions();
   

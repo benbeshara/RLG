@@ -5,7 +5,7 @@
 #include <string>
 #include "GameStore.h"
 
-GameStore *GameStore::store = 0;
+GameStore *GameStore::store = nullptr;
 
 GameStore *GameStore::GetInstance() {
   if (store == nullptr) {

@@ -10,20 +10,20 @@ typedef struct DragOffset {
 
 class Widget_Draggable : public Widget {
 public:
-  virtual void Draw() {};
+  void Draw() override {};
   
-  virtual void Step() {};
+  void Step() override {};
   
-  virtual Rectangle GetDimensions() { return {0, 0, 0, 0}; };
+  Rectangle GetDimensions() override { return {0, 0, 0, 0}; };
   
-  virtual RESIZE SetDimensions(Rectangle) { return CANNOT_RESIZE; };
+  RESIZE SetDimensions(Rectangle) override { return CANNOT_RESIZE; };
 
 protected:
   void detect_drag();
   
   void drag();
   
-  bool is_dragging;
+  bool is_dragging{};
   DragOffset delta;
 };
 

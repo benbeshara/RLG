@@ -24,13 +24,13 @@ typedef struct WGConfig_TextInput {
   // Functionality
   int selectBegin = 0;
   int selectLength = 0;
-  std::string text = "";
+  std::string text;
   bool isFocused = false;
 } WGConfig_TextInput;
 
 class WG_TextInput : public Widget {
 public:
-  WG_TextInput(WGConfig_TextInput *);
+  explicit WG_TextInput(WGConfig_TextInput *);
   
   void Draw() override;
   

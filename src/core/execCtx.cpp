@@ -36,19 +36,19 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
     
     TraceLog(LOG_INFO, widget.c_str());
   }
-};
+}
 
 execCtx::execCtx(State *State) {
   ctx.add(chaiscript::fun(&execCtx::parseFile, this), "parseFile");
   state = State;
-};
+}
 
 bool execCtx::verifyBuffer() {
   if (commandBuffer.length() > 0)
     return true;
   
   return false;
-};
+}
 
 void execCtx::loadBuffer(const std::string &filename) {
   std::ifstream ifs(filename);

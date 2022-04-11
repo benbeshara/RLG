@@ -17,7 +17,7 @@ typedef struct WGConfig_Window {
 
 class WG_Window : public Widget_Container_Draggable {
 public:
-  WG_Window(WGConfig_Window *);
+  explicit WG_Window(WGConfig_Window *);
   
   void Draw() override;
   
