@@ -37,7 +37,7 @@ public:
   std::unordered_map<uint64_t, Widget *> widgetList;
   std::unordered_map<std::string, uint64_t> namedWidgets;
   
-  uint64_t GetWidgetIDByName(std::string name);
+  uint64_t GetWidgetIDByName(const std::string &name);
 };
 
 #endif /* STATE_H */

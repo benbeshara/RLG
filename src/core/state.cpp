@@ -9,14 +9,14 @@ uint64_t State::AddWidget(Widget *widget, const std::optional<std::string> &widg
   this->widgetList.emplace(this->widgetCount, widget);
   this->widgetCount++;
   
-  if (widgetName && *widgetName != "") {
+  if (widgetName && !widgetName->empty()) {
     this->namedWidgets.emplace(*widgetName, this->widgetCount - 1);
   }
   
   return this->widgetCount - 1;
 }
 
-uint64_t State::GetWidgetIDByName(std::string widgetName) {
+uint64_t State::GetWidgetIDByName(const std::string &widgetName) {
   return this->namedWidgets.find(widgetName)->second;
 }
 

@@ -1,7 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include "raylib.hpp"
+#include "raylib-cpp.hpp"
 #include <unordered_map>
 
 enum RESIZE {

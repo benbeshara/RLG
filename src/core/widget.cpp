@@ -1,5 +1,5 @@
 #include "widget.h"
-#include "raylib.hpp"
+#include "raylib-cpp.hpp"
 
 bool Widget::isFocused() const { return this->focused; }
 
