@@ -3,6 +3,8 @@
 WG_Window::WG_Window(WGConfig_Window *config) { this->config = config; }
 
 void WG_Window::Draw() {
+  if (this->hidden) return;
+  
   Color windowColour;
   if (this->focused) {
     windowColour = *this->config->focusedColour;

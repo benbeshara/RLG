@@ -14,6 +14,8 @@ protected:
 public:
   uint64_t AddWidget(Widget *, const std::optional<std::string> &widgetName = std::nullopt);
   
+  Widget *getWidget(uint64_t widgetId);
+  
   void KillWidget(uint64_t);
   
   void BlurAllWidgets();

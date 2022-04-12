@@ -22,11 +22,13 @@ WG_Button::WG_Button(WGConfig_Button *config) {
 void WG_Button::doButtonClick(std::string widget) {
   GameStore *store = GameStore::GetInstance();
   const auto key = store->getState()->GetWidgetIDByName(widget);
-  store->getState()->KillWidget(key);
+  store->getState()->getWidget(key)->Toggle();
   TraceLog(LOG_INFO, "Clicked!");
 }
 
 void WG_Button::Draw() {
+  if (this->hidden) return;
+  
   Color buttonColour;
   if (this->focused) {
     buttonColour = this->config->selectColour;

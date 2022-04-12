@@ -16,6 +16,10 @@ uint64_t State::AddWidget(Widget *widget, const std::optional<std::string> &widg
   return this->widgetCount - 1;
 }
 
+Widget *State::getWidget(uint64_t widgetId) {
+  return this->widgetList.find(widgetId)->second;
+}
+
 uint64_t State::GetWidgetIDByName(const std::string &widgetName) {
   return this->namedWidgets.find(widgetName)->second;
 }
