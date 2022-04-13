@@ -2,7 +2,7 @@
 #define WG_TEXTINPUT_H
 
 #include "../core/widget.h"
-#include "raylib-cpp.hpp"
+#include "raylib.h"
 #include <string>
 
 typedef struct WGConfig_TextInput {

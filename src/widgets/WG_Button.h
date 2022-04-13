@@ -6,7 +6,6 @@
 #define RLG_CMAKE_WG_BUTTON_H
 
 #include <string>
-#include "Color.hpp"
 #include "../core/widget.h"
 
 typedef struct WGConfig_Button {
