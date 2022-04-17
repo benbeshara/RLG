@@ -6,14 +6,14 @@
 int main() {
   GameStore *store = GameStore::GetInstance();
   
-  const int screenWidth = 800;
-  const int screenHeight = 450;
+  const int screenWidth = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
+  const int screenHeight = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
   
   InitWindow(screenWidth, screenHeight, "Widget UI Demo");
   
-  SetTargetFPS(60);
+  SetTargetFPS(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::FRAMERATE));
   
-  store->getScript()->loadBuffer("./assets/init.chai");
+  store->getScript()->loadBuffer(store->getConfig()->getConfig<std::string>(gameConfig::E_CONFIG::INIT_SCRIPT));
   store->getScript()->run();
   
   while (!WindowShouldClose()) {

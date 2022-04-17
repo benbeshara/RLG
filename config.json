@@ -1,0 +1,6 @@
+{
+  "screenSizeX": 1024,
+  "screenSizeY": 768,
+  "frameRate": 60,
+  "initScript": "./assets/init.chai"
+}

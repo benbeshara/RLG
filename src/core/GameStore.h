@@ -8,6 +8,7 @@
 
 #include "state.h"
 #include "execCtx.h"
+#include "gameConfig.h"
 
 class GameStore {
 
@@ -18,6 +19,7 @@ protected:
   
   State *state = new State();
   execCtx *script = new execCtx(state);
+  gameConfig *config = new gameConfig();
 
 public:
   GameStore(GameStore &other) = delete;
@@ -29,6 +31,8 @@ public:
   State *getState() { return state; }
   
   execCtx *getScript() { return script; }
+  
+  gameConfig *getConfig() { return config; }
 };
 
 
