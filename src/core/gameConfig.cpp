@@ -5,10 +5,14 @@
 #include <fstream>
 #include "gameConfig.h"
 #include "json.hpp"
+#include "raylib.h"
 
 gameConfig::gameConfig() noexcept {
   std::ifstream i("config.json");
-  if (!i.is_open()) return;
+  if (!i.is_open()) {
+    TraceLog(LOG_WARNING, "Config file not found!");
+    return;
+  }
   nlohmann::json j;
   i >> j;
   

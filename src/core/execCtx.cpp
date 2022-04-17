@@ -7,6 +7,10 @@
 
 void execCtx::parseFile(const std::string &fileName) {
   std::ifstream i(fileName);
+  if (!i.is_open()) {
+    TraceLog(LOG_WARNING, "ParseFile: Script not found");
+    return;
+  }
   nlohmann::json j;
   i >> j;
   
@@ -48,6 +52,7 @@ bool execCtx::verifyBuffer() {
   if (commandBuffer.length() > 0)
     return true;
   
+  TraceLog(LOG_WARNING, "VerifyBuffer: Script not loaded");
   return false;
 }
 

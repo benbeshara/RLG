@@ -4,6 +4,7 @@
 #include "core/GameStore.h"
 
 int main() {
+  SetTraceLogLevel(LOG_ALL);
   GameStore *store = GameStore::GetInstance();
   
   const int screenWidth = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
