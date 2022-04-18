@@ -1,10 +1,15 @@
 [
   {
+    "meta": true,
+    "canvasSizeX": 320,
+    "canvasSizeY": 240
+  },
+  {
     "widget": "WG_Button",
     "props": {
       "label": "Button!",
-      "x": 300,
-      "y": 300,
+      "x": 128,
+      "y": 128,
       "scriptFunction": "doButtonClick(\"test\")"
     }
   },
@@ -23,18 +28,18 @@
         "b": 128,
         "a": 255
       },
-      "width": 256,
-      "height": 64,
-      "x": 28,
-      "y": 20
+      "width": 64,
+      "height": 12,
+      "x": 4,
+      "y": 4
     },
     "contains": [
       {
         "widget": "WG_TextInput",
         "props": {
           "text": "Input 1 > ",
-          "x": 25,
-          "y": 25
+          "x": 4,
+          "y": 4
         }
       }
     ]
@@ -55,18 +60,18 @@
         "b": 128,
         "a": 255
       },
-      "width": 256,
-      "height": 64,
-      "x": 28,
-      "y": 96
+      "width": 64,
+      "height": 12,
+      "x": 4,
+      "y": 18
     },
     "contains": [
       {
         "widget": "WG_TextInput",
         "props": {
           "text": "Input 2 > ",
-          "x": 25,
-          "y": 25
+          "x": 4,
+          "y": 4
         }
       }
     ]

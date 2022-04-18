@@ -18,12 +18,18 @@ void execCtx::parseFile(const std::string &fileName) {
 }
 
 void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget) {
+  Vector2 canvasSize = {-1, -1};
   for (auto &element: json) {
+    if (element.value("meta", false)) {
+      canvasSize = {element["canvasSizeX"], element["canvasSizeY"]};
+      continue;
+    }
+    
     std::string widget = element["widget"];
     auto name = element.value("name", "");
     auto props = element["props"];
     
-    auto builder = new guiBuilder(widget, props);
+    auto builder = new guiBuilder(widget, props, canvasSize);
     
     uint64_t widgetId;
     

@@ -4,12 +4,12 @@
 #include "core/GameStore.h"
 
 int main() {
-  SetTraceLogLevel(LOG_ALL);
+  SetTraceLogLevel(LOG_INFO);
   GameStore *store = GameStore::GetInstance();
   
   const int screenWidth = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
   const int screenHeight = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
-  
+//  SetConfigFlags(FLAG_WINDOW_RESIZABLE);
   InitWindow(screenWidth, screenHeight, "Widget UI Demo");
   
   SetTargetFPS(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::FRAMERATE));

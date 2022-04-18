@@ -7,15 +7,38 @@
 #include "../widgets/WG_TextInput.h"
 #include "../widgets/WG_Window.h"
 #include "../widgets/WG_Button.h"
+#include "GameStore.h"
 
-guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props,
-                       const std::optional<Widget_Container_Draggable> &parent) {
+enum ScaleDirection {
+  x,
+  y
+};
+
+static int getRelativeDimension(ScaleDirection dir, int src, int dest) {
+  GameStore *store = GameStore::GetInstance();
+  int windowSize;
+  if (dir == x) {
+    windowSize = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
+  }
+  if (dir == y) {
+    windowSize = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
+  }
+  return src * (windowSize / dest);
+}
+
+guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 canvasSize) {
+  if (canvasSize.x < 0 || canvasSize.y < 0) {
+    GameStore *store = GameStore::GetInstance();
+    
+    canvasSize.x = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
+    canvasSize.y = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
+  }
   if (widget == "WG_TextInput") {
     auto *config = new WGConfig_TextInput();
     
     config->text = props["text"];
-    config->x = props["x"];
-    config->y = props["y"];
+    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
+    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
     
     this->widget = new WG_TextInput(config);
   }
@@ -23,8 +46,8 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props,
     auto *config = new WGConfig_Button();
     
     config->label = props["label"];
-    config->x = props["x"];
-    config->y = props["y"];
+    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
+    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
     config->scriptFunction = props["scriptFunction"];
     
     this->widget = new WG_Button(config);
@@ -42,10 +65,10 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props,
       config->focusedColour->b = props["focusedColour"]["b"];
       config->focusedColour->a = props["focusedColour"]["a"];
     }
-    config->width = props["width"];
-    config->height = props["height"];
-    config->x = props["x"];
-    config->y = props["y"];
+    config->width = getRelativeDimension(x, props["width"], canvasSize.x);
+    config->height = getRelativeDimension(y, props["height"], canvasSize.y);
+    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
+    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
     
     this->widget = new WG_Window(config);
   }

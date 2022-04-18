@@ -12,8 +12,7 @@
 
 class guiBuilder {
 public:
-  guiBuilder(const std::string &widget, nlohmann::json props,
-             const std::optional<Widget_Container_Draggable> &parent = std::nullopt);
+  guiBuilder(const std::string &widget, nlohmann::json props, Vector2 canvasSize);
   
   Widget *widget;
 };
