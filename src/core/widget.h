@@ -5,43 +5,49 @@
 #include <unordered_map>
 
 enum RESIZE {
-  CANNOT_RESIZE, RESIZED
+	CANNOT_RESIZE, RESIZED
 };
 
 class Widget {
 public:
-  // Generic functions
-  [[nodiscard]] bool isFocused() const;
-  
-  void Focus();
-  
-  void Blur();
-  
-  void Toggle();
-  
-  void Hide();
-  
-  void Show();
-  
-  void FocusCheck();
-  
-  // Implementation-specific functions
-  virtual void Draw() {};
-  
-  virtual void Step() {};
-  
-  virtual Rectangle GetDimensions() { return {0, 0, 0, 0}; };
-  
-  virtual RESIZE SetDimensions(Rectangle) { return CANNOT_RESIZE; };
-  
-  Vector2 ContainerOffset = {0, 0};
-  
-  virtual void Click() {};
+	// Generic functions
+	[[nodiscard]] bool isFocused() const;
+	
+	void Focus();
+	
+	void Blur();
+	
+	void Toggle();
+	
+	void Hide();
+	
+	void Show();
+	
+	void FocusCheck();
+	
+	// Implementation-specific functions
+	virtual void Draw() {};
+	
+	virtual void Step() {};
+	
+	virtual Rectangle GetDimensions() { return {0, 0, 0, 0}; };
+	
+	virtual RESIZE SetDimensions(Rectangle) { return CANNOT_RESIZE; };
+	
+	[[nodiscard]] float GetPointScale() const;
+	
+	void SetPointScale(float pointScale);
+	
+	Vector2 ContainerOffset = {0, 0};
+	
+	virtual void Click() {};
 
 protected:
-  bool focused{};
-  
-  bool hidden{};
+	bool focused{};
+	
+	bool hidden{};
+	
+	float pointScale;
 };
 
 #endif /* WIDGET_H */

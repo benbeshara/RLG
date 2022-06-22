@@ -1,8 +1,8 @@
 [
   {
     "meta": true,
-    "canvasSizeX": 320,
-    "canvasSizeY": 240
+    "canvasSizeX": 640,
+    "canvasSizeY": 480
   },
   {
     "widget": "WG_Button",
@@ -28,8 +28,8 @@
         "b": 128,
         "a": 255
       },
-      "width": 64,
-      "height": 12,
+      "width": 128,
+      "height": 48,
       "x": 4,
       "y": 4
     },
@@ -39,7 +39,9 @@
         "props": {
           "text": "Input 1 > ",
           "x": 4,
-          "y": 4
+          "y": 4,
+          "width": 120,
+          "height": 40
         }
       }
     ]
@@ -60,10 +62,10 @@
         "b": 128,
         "a": 255
       },
-      "width": 64,
-      "height": 12,
+      "width": 128,
+      "height": 48,
       "x": 4,
-      "y": 18
+      "y": 56
     },
     "contains": [
       {
@@ -71,7 +73,9 @@
         "props": {
           "text": "Input 2 > ",
           "x": 4,
-          "y": 4
+          "y": 4,
+          "width": 120,
+          "height": 40
         }
       }
     ]
