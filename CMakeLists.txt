@@ -19,7 +19,7 @@ set(CORE
         src/core/widget.cpp
         src/core/widget_container_draggable.cpp
         src/core/widget_draggable.cpp
-        src/core/guiBuilder.cpp src/core/guiBuilder.h src/core/GameStore.cpp src/core/GameStore.h lib/raycolors.h src/core/gameConfig.cpp src/core/gameConfig.h)
+        src/core/guiBuilder.cpp src/core/guiBuilder.h src/core/GameStore.cpp src/core/GameStore.h lib/raycolors.h src/core/gameConfig.cpp src/core/gameConfig.h src/core/scriptFns.h)
 
 set(WIDGETS
         src/widgets/WG_TextInput.cpp

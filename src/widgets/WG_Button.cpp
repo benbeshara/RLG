@@ -14,16 +14,7 @@ void WG_Button::Click() {
 }
 
 WG_Button::WG_Button(WGConfig_Button *config) {
-  GameStore *store = GameStore::GetInstance();
   this->config = config;
-  store->getScript()->ctx.add(chaiscript::fun(&WG_Button::doButtonClick, this), "doButtonClick");
-}
-
-void WG_Button::doButtonClick(std::string widget) {
-  GameStore *store = GameStore::GetInstance();
-  const auto key = store->getState()->GetWidgetIDByName(widget);
-  store->getState()->getWidget(key)->Toggle();
-  TraceLog(LOG_INFO, "Clicked!");
 }
 
 void WG_Button::Draw() {

@@ -2,6 +2,7 @@
 #include "execCtx.h"
 #include "guiBuilder.h"
 #include "GameStore.h"
+#include "scriptFns.h"
 #include <chaiscript/chaiscript.hpp>
 #include <json.hpp>
 #include <string>
@@ -65,7 +66,8 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
 }
 
 execCtx::execCtx(State *State) {
-  ctx.add(chaiscript::fun(&execCtx::parseFile, this), "parseFile");
+  ctx->add(chaiscript::fun(&execCtx::parseFile, this), "parseFile");
+  addFuncs(ctx);
   state = State;
 }
 
@@ -87,10 +89,10 @@ void execCtx::loadBuffer(const std::string &filename) {
 
 void execCtx::run() {
   if (verifyBuffer()) {
-    ctx.eval(commandBuffer);
+    ctx->eval(commandBuffer);
   }
 }
 
 void execCtx::runOnce(std::string cmd) {
-  ctx.eval(cmd);
+  ctx->eval(cmd);
 }

@@ -20,7 +20,7 @@ public:
   
   void runOnce(std::string cmd);
   
-  chaiscript::ChaiScript ctx;
+  chaiscript::ChaiScript *ctx = new chaiscript::ChaiScript();
 
 protected:
   State *state;
