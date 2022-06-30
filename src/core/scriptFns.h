@@ -8,13 +8,13 @@
 
 static void doButtonClick(const std::string &widget) {
   GameStore *store = GameStore::GetInstance();
-  store->getState()->GetWidgetByNameDeep(widget)->Toggle();
+  store->getState()->GetWidgetByName(widget)->Toggle();
   TraceLog(LOG_INFO, "Clicked!");
 }
 
 static void changeText(const std::string &widget, const std::string &text) {
   GameStore *store = GameStore::GetInstance();
-  auto *t = dynamic_cast<WG_TextInput *>(store->getState()->GetWidgetByNameDeep(widget));
+  auto *t = dynamic_cast<WG_TextInput *>(store->getState()->GetWidgetByName(widget));
   t->SetText(text);
 }
 

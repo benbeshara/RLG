@@ -28,7 +28,7 @@ std::pair<uint64_t, uint64_t> State::GetWidgetIDByName(const std::string &widget
   return this->namedWidgets.find(widgetName)->second;
 }
 
-Widget *State::GetWidgetByNameDeep(const std::string &widgetName) {
+Widget *State::GetWidgetByName(const std::string &widgetName) {
   auto match = this->GetWidgetIDByName(widgetName);
   if (match.second < 0)
     return getWidget(match.first);

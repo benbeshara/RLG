@@ -47,7 +47,7 @@ public:
   
   std::pair<uint64_t, uint64_t> GetWidgetIDByName(const std::string &name);
   
-  Widget *GetWidgetByNameDeep(const std::string &widgetName);
+  Widget *GetWidgetByName(const std::string &widgetName);
 };
 
 #endif /* STATE_H */
