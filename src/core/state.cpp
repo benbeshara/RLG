@@ -1,16 +1,20 @@
 #include <string>
 #include "state.h"
+#include "widget_container_draggable.h"
+#include "GameStore.h"
 
 /**
  * Add a widget to the state machine
  * Returns index of widget at end of stack
  **/
-uint64_t State::AddWidget(Widget *widget, const std::optional<std::string> &widgetName) {
+uint64_t
+State::AddWidget(Widget *widget, const std::optional<std::string> &widgetName, const std::optional<uint64_t> parentId) {
   this->widgetList.emplace(this->widgetCount, widget);
   this->widgetCount++;
   
   if (widgetName && !widgetName->empty()) {
-    this->namedWidgets.emplace(*widgetName, this->widgetCount - 1);
+    GameStore *store = GameStore::GetInstance();
+    store->getState()->namedWidgets.emplace(*widgetName, std::make_pair(this->widgetCount - 1, *parentId));
   }
   
   return this->widgetCount - 1;
@@ -20,8 +24,17 @@ Widget *State::getWidget(uint64_t widgetId) {
   return this->widgetList.find(widgetId)->second;
 }
 
-uint64_t State::GetWidgetIDByName(const std::string &widgetName) {
+std::pair<uint64_t, uint64_t> State::GetWidgetIDByName(const std::string &widgetName) {
   return this->namedWidgets.find(widgetName)->second;
+}
+
+Widget *State::GetWidgetByNameDeep(const std::string &widgetName) {
+  auto match = this->GetWidgetIDByName(widgetName);
+  if (match.second < 0)
+    return getWidget(match.first);
+  
+  auto container = dynamic_cast<Widget_Container_Draggable *>(this->getWidget(match.second));
+  return container->containerState.getWidget(match.first);
 }
 
 /**

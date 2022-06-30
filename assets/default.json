@@ -10,7 +10,7 @@
       "label": "Button!",
       "x": 128,
       "y": 128,
-      "scriptFunction": "doButtonClick(\"test\")"
+      "scriptFunction": "changeText(\"textbox1\", \"Hellooooo\")"
     }
   },
   {
@@ -36,6 +36,7 @@
     "contains": [
       {
         "widget": "WG_TextInput",
+        "name": "textbox1",
         "props": {
           "text": "Input 1 > ",
           "x": 4,

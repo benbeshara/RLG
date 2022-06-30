@@ -1,9 +1,10 @@
 #include "widget_container_draggable.h"
 
-uint64_t Widget_Container_Draggable::AddWidget(Widget *widget, const std::optional<std::string> &widgetName) {
+uint64_t Widget_Container_Draggable::AddWidget(Widget *widget, const std::optional<std::string> &widgetName,
+                                               std::optional<uint64_t> parentId) {
   widget->ContainerOffset = {widget->GetCorrectedDimensions().x,
                              widget->GetCorrectedDimensions().y};
-  return containerState.AddWidget(widget, widgetName);
+  return containerState.AddWidget(widget, widgetName, parentId);
 }
 
 void Widget_Container_Draggable::DrawWidgets() {

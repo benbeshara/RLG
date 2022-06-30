@@ -52,7 +52,7 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
     if (parentWidget) {
       auto parent = dynamic_cast<Widget_Container_Draggable *>(state->widgetList.find(
           *parentWidget)->second);
-      widgetId = parent->AddWidget(builder->widget, name);
+      widgetId = parent->AddWidget(builder->widget, name, parentWidget);
     } else {
       widgetId = state->AddWidget(builder->widget, name);
     }
@@ -94,5 +94,9 @@ void execCtx::run() {
 }
 
 void execCtx::runOnce(std::string cmd) {
-  ctx->eval(cmd);
+  try {
+    ctx->eval(cmd);
+  } catch (chaiscript::Boxed_Value bv) {
+    return;
+  }
 }
