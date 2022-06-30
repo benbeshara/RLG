@@ -27,7 +27,8 @@ protected:
   
   void parseFile(const std::string &fileName);
   
-  void parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget = std::nullopt);
+  void parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget = std::nullopt,
+                   std::optional<Vector2> canvasSize = std::nullopt);
   
   bool verifyBuffer();
   

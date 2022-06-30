@@ -42,9 +42,9 @@ public:
   
   virtual Rectangle GetCorrectedDimensions() { return GetDimensions(); };
   
-  [[nodiscard]] float GetPointScale() const;
+  [[nodiscard]] float GetPointScale() const { return pointScale; };
   
-  void SetPointScale(float pointScale);
+  void SetPointScale(float scale) { pointScale = scale; };
   
   [[nodiscard]] Vector2 GetGuiScale() const { return guiScale; };
   

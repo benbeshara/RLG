@@ -1,8 +1,8 @@
 [
   {
     "meta": true,
-    "canvasSizeX": 640,
-    "canvasSizeY": 480
+    "canvasSizeX": 320,
+    "canvasSizeY": 240
   },
   {
     "widget": "WG_Button",

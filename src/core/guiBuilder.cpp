@@ -18,15 +18,6 @@ static Vector2 getGuiCanvasScale(Vector2 canvasSize) {
   };
 }
 
-// This gets an approximate scale factor for things like font sizes
-static float getPointCanvasScale(Vector2 canvasSize) {
-  GameStore *store = GameStore::GetInstance();
-  auto x = static_cast<float>(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X));
-  auto y = static_cast<float>(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y));
-  
-  return (x / y) * (canvasSize.x / canvasSize.y);
-}
-
 guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 canvasSize) {
   if (canvasSize.x < 0 || canvasSize.y < 0) {
     GameStore *store = GameStore::GetInstance();
@@ -77,5 +68,5 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 
   }
   
   this->widget->SetGuiScale(getGuiCanvasScale(canvasSize));
-  this->widget->SetPointScale(getPointCanvasScale(canvasSize));
+  this->widget->SetPointScale(getGuiCanvasScale(canvasSize).y);
 }

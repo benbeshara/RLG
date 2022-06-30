@@ -13,10 +13,6 @@ void Widget::Hide() { this->hidden = true; }
 
 void Widget::Show() { this->hidden = false; }
 
-float Widget::GetPointScale() const { return this->pointScale; }
-
-void Widget::SetPointScale(float scale) { this->pointScale = scale; }
-
 void Widget::FocusCheck() {
   if (!this->focused &&
       CheckCollisionPointRec(GetMousePosition(), this->GetCorrectedDimensions()) &&

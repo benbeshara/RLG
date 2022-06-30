@@ -15,7 +15,7 @@ void Widget_Container_Draggable::DrawWidgets() {
 RESIZE Widget_Container_Draggable::SetContainerContentsDimensions() {
   State::iterator i;
   
-  Rectangle ContainerDimensionsThisFrame = GetCorrectedDimensions();
+  Rectangle ContainerDimensionsThisFrame = GetDimensions();
   
   for (auto &value: containerState) {
     Rectangle WidgetDimensionsThisFrame = value.second->GetCorrectedDimensions();

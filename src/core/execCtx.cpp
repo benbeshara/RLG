@@ -17,8 +17,11 @@ void execCtx::parseFile(const std::string &fileName) {
   this->parseLayout(j);
 }
 
-void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget) {
-  Vector2 canvasSize = {-1, -1};
+void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> parentWidget,
+                          std::optional<Vector2> canvasSize) {
+  if (!canvasSize) {
+    *canvasSize = {-1, -1};
+  }
   for (auto &element: json) {
     if (element.value("meta", false)) {
       canvasSize = {element["canvasSizeX"], element["canvasSizeY"]};
@@ -29,7 +32,7 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
     auto name = element.value("name", "");
     auto props = element["props"];
     
-    auto builder = new guiBuilder(widget, props, canvasSize);
+    auto builder = new guiBuilder(widget, props, *canvasSize);
     
     uint64_t widgetId;
     
@@ -42,7 +45,7 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
     }
     
     if (element.contains("contains")) {
-      this->parseLayout(element["contains"], widgetId);
+      this->parseLayout(element["contains"], widgetId, canvasSize);
     }
     
     TraceLog(LOG_INFO, widget.c_str());

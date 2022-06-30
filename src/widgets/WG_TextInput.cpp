@@ -37,11 +37,18 @@ RESIZE WG_TextInput::SetDimensions(Rectangle newDimensions) {
 void WG_TextInput::Draw() {
   if (this->hidden) return;
   
-  DrawTextRecEx(GetFontDefault(), this->config->text.c_str(), this->GetDimensions(),
-                static_cast<float>(this->config->fontSize) * this->GetPointScale(), this->config->fontSpacing,
+  DrawTextRecEx(GetFontDefault(),
+                this->config->text.c_str(),
+                this->GetDimensions(),
+                this->GetCorrectedDimension(this->config->fontSize, POINT),
+                this->config->fontSpacing,
                 this->config->wordWrap,
-                this->config->colour, this->config->selectBegin, this->config->selectLength,
-                this->config->selectColour, this->config->selectBackColour);
+                this->config->colour,
+                this->config->selectBegin,
+                this->config->selectLength,
+                this->config->selectColour,
+                this->config->selectBackColour
+  );
 }
 
 void WG_TextInput::Step() {
