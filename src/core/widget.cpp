@@ -18,22 +18,22 @@ float Widget::GetPointScale() const { return this->pointScale; }
 void Widget::SetPointScale(float scale) { this->pointScale = scale; }
 
 void Widget::FocusCheck() {
-	if (!this->focused &&
-			CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
-			IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-		focused = true;
-		return;
-	}
-	if (this->focused &&
-			!CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
-			IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-		focused = false;
-		return;
-	}
-	if (this->focused &&
-			CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
-			IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-		this->Click();
-		return;
-	}
+  if (!this->focused &&
+      CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
+      IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+    focused = true;
+    return;
+  }
+  if (this->focused &&
+      !CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
+      IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+    focused = false;
+    return;
+  }
+  if (this->focused &&
+      CheckCollisionPointRec(GetMousePosition(), this->GetDimensions()) &&
+      IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+    this->Click();
+    return;
+  }
 }
