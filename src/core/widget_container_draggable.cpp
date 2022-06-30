@@ -1,8 +1,8 @@
 #include "widget_container_draggable.h"
 
 uint64_t Widget_Container_Draggable::AddWidget(Widget *widget, const std::optional<std::string> &widgetName) {
-  widget->ContainerOffset = {widget->GetDimensions().x,
-                             widget->GetDimensions().y};
+  widget->ContainerOffset = {widget->GetCorrectedDimensions().x,
+                             widget->GetCorrectedDimensions().y};
   return containerState.AddWidget(widget, widgetName);
 }
 
@@ -15,10 +15,10 @@ void Widget_Container_Draggable::DrawWidgets() {
 RESIZE Widget_Container_Draggable::SetContainerContentsDimensions() {
   State::iterator i;
   
-  Rectangle ContainerDimensionsThisFrame = GetDimensions();
+  Rectangle ContainerDimensionsThisFrame = GetCorrectedDimensions();
   
   for (auto &value: containerState) {
-    Rectangle WidgetDimensionsThisFrame = value.second->GetDimensions();
+    Rectangle WidgetDimensionsThisFrame = value.second->GetCorrectedDimensions();
     Vector2 WidgetContainerOffset = value.second->ContainerOffset;
     
     value.second->SetDimensions(

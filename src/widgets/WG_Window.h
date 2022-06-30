@@ -29,6 +29,8 @@ public:
 
 protected:
   WGConfig_Window *config;
+  
+  Rectangle GetCorrectedDimensions();
 };
 
 #endif /* WG_WINDOW_H */

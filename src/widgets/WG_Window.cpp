@@ -11,8 +11,13 @@ void WG_Window::Draw() {
   } else {
     windowColour = this->config->colour;
   }
-  DrawRectangle(this->config->x, this->config->y, this->config->width,
-                this->config->height, windowColour);
+  DrawRectangle(
+      GetCorrectedDimension(this->config->x, X),
+      GetCorrectedDimension(this->config->y, Y),
+      GetCorrectedDimension(this->config->width, X),
+      GetCorrectedDimension(this->config->height, Y),
+      windowColour
+  );
   
   DrawWidgets();
 }
@@ -23,8 +28,21 @@ void WG_Window::Step() {
 }
 
 Rectangle WG_Window::GetDimensions() {
-  return {(float) this->config->x, (float) this->config->y,
-          (float) this->config->width, (float) this->config->height};
+  return {
+      (float) this->config->x,
+      (float) this->config->y,
+      (float) this->config->width,
+      (float) this->config->height
+  };
+}
+
+Rectangle WG_Window::GetCorrectedDimensions() {
+  return {
+      GetCorrectedDimension(this->config->x, X),
+      GetCorrectedDimension(this->config->y, Y),
+      GetCorrectedDimension(this->config->width, X),
+      GetCorrectedDimension(this->config->height, Y),
+  };
 }
 
 RESIZE WG_Window::SetDimensions(Rectangle newDimensions) {

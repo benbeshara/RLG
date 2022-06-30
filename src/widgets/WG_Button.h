@@ -52,6 +52,8 @@ protected:
   void Click() override;
   
   void doButtonClick(std::string widget);
+  
+  Rectangle GetCorrectedDimensions();
 };
 
 

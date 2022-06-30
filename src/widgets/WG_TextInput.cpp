@@ -8,8 +8,21 @@ WG_TextInput::WG_TextInput(WGConfig_TextInput *config) {
 }
 
 Rectangle WG_TextInput::GetDimensions() {
-  return {(float) this->config->x, (float) this->config->y, (float) this->config->width,
-          (float) this->config->height};
+  return {
+      (float) GetCorrectedDimension(this->config->x, X),
+      (float) GetCorrectedDimension(this->config->y, Y),
+      (float) GetCorrectedDimension(this->config->width, X),
+      (float) GetCorrectedDimension(this->config->height, Y)
+  };
+}
+
+Rectangle WG_TextInput::GetCorrectedDimensions() {
+  return {
+      GetCorrectedDimension(this->config->x, X),
+      GetCorrectedDimension(this->config->y, Y),
+      GetCorrectedDimension(this->config->width, X),
+      GetCorrectedDimension(this->config->height, Y),
+  };
 }
 
 RESIZE WG_TextInput::SetDimensions(Rectangle newDimensions) {

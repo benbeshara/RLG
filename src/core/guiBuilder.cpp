@@ -9,25 +9,17 @@
 #include "../widgets/WG_Button.h"
 #include "GameStore.h"
 
-enum ScaleDirection {
-  x,
-  y
-};
-
-static int getRelativeDimension(ScaleDirection dir, int src, float dest) {
+static Vector2 getGuiCanvasScale(Vector2 canvasSize) {
   GameStore *store = GameStore::GetInstance();
-  int windowSize;
-  if (dir == x) {
-    windowSize = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X);
-  }
-  if (dir == y) {
-    windowSize = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
-  }
-  return static_cast<int>(static_cast<float>(src) * (static_cast<float>(windowSize) / dest));
+  
+  return {
+      store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X) / canvasSize.x,
+      store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y) / canvasSize.y
+  };
 }
 
 // This gets an approximate scale factor for things like font sizes
-static float setPointCanvasScale(Vector2 canvasSize) {
+static float getPointCanvasScale(Vector2 canvasSize) {
   GameStore *store = GameStore::GetInstance();
   auto x = static_cast<float>(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X));
   auto y = static_cast<float>(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y));
@@ -46,10 +38,10 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 
     auto *config = new WGConfig_TextInput();
     
     config->text = props["text"];
-    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
-    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
-    config->width = getRelativeDimension(x, props.value("width", 128), canvasSize.x);
-    config->height = getRelativeDimension(y, props.value("height", 64), canvasSize.y);
+    config->x = props["x"];
+    config->y = props["y"];
+    config->width = props.value("width", 128);
+    config->height = props.value("height", 64);
     
     this->widget = new WG_TextInput(config);
   }
@@ -57,8 +49,8 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 
     auto *config = new WGConfig_Button();
     
     config->label = props["label"];
-    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
-    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
+    config->x = props["x"];
+    config->y = props["y"];
     config->scriptFunction = props["scriptFunction"];
     
     this->widget = new WG_Button(config);
@@ -76,13 +68,14 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 
       config->focusedColour->b = props["focusedColour"]["b"];
       config->focusedColour->a = props["focusedColour"]["a"];
     }
-    config->width = getRelativeDimension(x, props["width"], canvasSize.x);
-    config->height = getRelativeDimension(y, props["height"], canvasSize.y);
-    config->x = getRelativeDimension(x, props["x"], canvasSize.x);
-    config->y = getRelativeDimension(y, props["y"], canvasSize.y);
+    config->width = props["width"];
+    config->height = props["height"];
+    config->x = props["x"];
+    config->y = props["y"];
     
     this->widget = new WG_Window(config);
   }
   
-  this->widget->SetPointScale(setPointCanvasScale(canvasSize));
+  this->widget->SetGuiScale(getGuiCanvasScale(canvasSize));
+  this->widget->SetPointScale(getPointCanvasScale(canvasSize));
 }

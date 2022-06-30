@@ -8,6 +8,12 @@ enum RESIZE {
   CANNOT_RESIZE, RESIZED
 };
 
+enum SCALE_DIMENSIONS {
+  X,
+  Y,
+  POINT
+};
+
 class Widget {
 public:
   // Generic functions
@@ -34,6 +40,8 @@ public:
   
   virtual RESIZE SetDimensions(Rectangle) { return CANNOT_RESIZE; };
   
+  virtual Rectangle GetCorrectedDimensions() { return GetDimensions(); };
+  
   [[nodiscard]] float GetPointScale() const;
   
   void SetPointScale(float pointScale);
@@ -43,6 +51,20 @@ public:
   void SetGuiScale(Vector2 scale) { guiScale = scale; };
   
   Vector2 ContainerOffset = {0, 0};
+  
+  [[nodiscard]] float GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const {
+    // TODO: Snapping
+    switch (dimension) {
+      case SCALE_DIMENSIONS::X:
+        return base * guiScale.x;
+      case SCALE_DIMENSIONS::Y:
+        return base * guiScale.y;
+      case SCALE_DIMENSIONS::POINT:
+        return base * pointScale;
+      default:
+        return base;
+    }
+  };
   
   virtual void Click() {};
 

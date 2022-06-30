@@ -36,9 +36,23 @@ void WG_Button::Draw() {
     buttonColour = this->config->colour;
   }
   
-  DrawRectangle(this->config->x, this->config->y, this->config->width, this->config->height, buttonColour);
-  DrawTextEx(this->config->font, this->config->label.c_str(), {(float) this->config->x, (float) this->config->y}, 12, 1,
-             this->config->textColour);
+  DrawRectangle(
+      GetCorrectedDimension(this->config->x, X),
+      GetCorrectedDimension(this->config->y, Y),
+      GetCorrectedDimension(this->config->width, X),
+      GetCorrectedDimension(this->config->height, Y),
+      buttonColour
+  );
+  DrawTextEx(
+      this->config->font,
+      this->config->label.c_str(),
+      {
+          (float) GetCorrectedDimension(this->config->x, X),
+          (float) GetCorrectedDimension(this->config->y, Y)
+      },
+      GetCorrectedDimension(12, POINT),
+      1,
+      this->config->textColour);
 }
 
 void WG_Button::Step() {
@@ -47,6 +61,15 @@ void WG_Button::Step() {
 
 Rectangle WG_Button::GetDimensions() {
   return {(float) this->config->x, (float) this->config->y, (float) this->config->width, (float) this->config->height};
+}
+
+Rectangle WG_Button::GetCorrectedDimensions() {
+  return {
+      GetCorrectedDimension(this->config->x, X),
+      GetCorrectedDimension(this->config->y, Y),
+      GetCorrectedDimension(this->config->width, X),
+      GetCorrectedDimension(this->config->height, Y),
+  };
 }
 
 RESIZE WG_Button::SetDimensions(Rectangle dimensions) {
