@@ -47,7 +47,7 @@ public:
 protected:
   WGConfig_TextInput *config;
   
-  Rectangle GetCorrectedDimensions();
+  Rectangle GetCorrectedDimensions() override;
 };
 
 #endif /* WG_TEXTINPUT_H */

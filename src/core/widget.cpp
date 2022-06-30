@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "raylib.h"
+#include "GameStore.h"
 
 bool Widget::isFocused() const { return this->focused; }
 
@@ -31,5 +32,20 @@ void Widget::FocusCheck() {
       IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
     this->Click();
     return;
+  }
+}
+
+float Widget::GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const {
+  // TODO: Snapping
+  GameStore *store = GameStore::GetInstance();
+  
+  switch (dimension) {
+    case SCALE_DIMENSIONS::X:
+      return base * store->getState()->GetGuiScale().x;
+    case SCALE_DIMENSIONS::Y:
+    case SCALE_DIMENSIONS::POINT:
+      return base * store->getState()->GetGuiScale().y;
+    default:
+      return base;
   }
 }

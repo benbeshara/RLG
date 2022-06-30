@@ -1,9 +1,20 @@
 #include "raylib.h"
 #include "execCtx.h"
 #include "guiBuilder.h"
+#include "GameStore.h"
 #include <chaiscript/chaiscript.hpp>
 #include <json.hpp>
 #include <string>
+
+static void setGuiCanvasScale(Vector2 canvasSize) {
+  GameStore *store = GameStore::GetInstance();
+  store->getState()->SetGuiScale(
+      {
+          store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X) / canvasSize.x,
+          store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y) / canvasSize.y
+      }
+  );
+}
 
 void execCtx::parseFile(const std::string &fileName) {
   std::ifstream i(fileName);
@@ -24,7 +35,8 @@ void execCtx::parseLayout(const nlohmann::json &json, std::optional<uint64_t> pa
   }
   for (auto &element: json) {
     if (element.value("meta", false)) {
-      canvasSize = {element["canvasSizeX"], element["canvasSizeY"]};
+      *canvasSize = {element["canvasSizeX"], element["canvasSizeY"]};
+      setGuiCanvasScale(*canvasSize);
       continue;
     }
     

@@ -10,6 +10,7 @@
 class State {
 protected:
   uint64_t widgetCount = 0;
+  Vector2 guiScale = {1.0f, 1.0f};
 
 public:
   uint64_t AddWidget(Widget *, const std::optional<std::string> &widgetName = std::nullopt);
@@ -19,6 +20,10 @@ public:
   void KillWidget(uint64_t);
   
   void BlurAllWidgets();
+  
+  Vector2 GetGuiScale() { return guiScale; };
+  
+  void SetGuiScale(Vector2 scale) { guiScale = scale; };
   
   void GameLoop();
   

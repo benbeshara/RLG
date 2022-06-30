@@ -9,15 +9,6 @@
 #include "../widgets/WG_Button.h"
 #include "GameStore.h"
 
-static Vector2 getGuiCanvasScale(Vector2 canvasSize) {
-  GameStore *store = GameStore::GetInstance();
-  
-  return {
-      store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_X) / canvasSize.x,
-      store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y) / canvasSize.y
-  };
-}
-
 guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 canvasSize) {
   if (canvasSize.x < 0 || canvasSize.y < 0) {
     GameStore *store = GameStore::GetInstance();
@@ -66,7 +57,4 @@ guiBuilder::guiBuilder(const std::string &widget, nlohmann::json props, Vector2 
     
     this->widget = new WG_Window(config);
   }
-  
-  this->widget->SetGuiScale(getGuiCanvasScale(canvasSize));
-  this->widget->SetPointScale(getGuiCanvasScale(canvasSize).y);
 }

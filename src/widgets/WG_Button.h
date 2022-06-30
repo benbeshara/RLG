@@ -53,7 +53,7 @@ protected:
   
   void doButtonClick(std::string widget);
   
-  Rectangle GetCorrectedDimensions();
+  Rectangle GetCorrectedDimensions() override;
 };
 
 

@@ -30,7 +30,7 @@ public:
 protected:
   WGConfig_Window *config;
   
-  Rectangle GetCorrectedDimensions();
+  Rectangle GetCorrectedDimensions() override;
 };
 
 #endif /* WG_WINDOW_H */

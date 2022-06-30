@@ -1,5 +1,6 @@
 #include "widget_draggable.h"
 #include "raylib.h"
+#include "GameStore.h"
 #include <string>
 
 void Widget_Draggable::detect_drag() {
@@ -22,10 +23,13 @@ void Widget_Draggable::drag() {
     return;
   }
   
+  GameStore *store = GameStore::GetInstance();
+  
   Rectangle oldDimensions = this->GetDimensions();
-  Rectangle draggedDimensions = {(GetMousePosition().x - static_cast<float>(this->delta.x)) / this->GetGuiScale().x,
-                                 (GetMousePosition().y - static_cast<float>(this->delta.y)) / this->GetGuiScale().y,
-                                 oldDimensions.width, oldDimensions.height};
+  Rectangle draggedDimensions = {
+      (GetMousePosition().x - static_cast<float>(this->delta.x)) / store->getState()->GetGuiScale().x,
+      (GetMousePosition().y - static_cast<float>(this->delta.y)) / store->getState()->GetGuiScale().y,
+      oldDimensions.width, oldDimensions.height};
   this->SetDimensions(draggedDimensions);
   
   // See if we've stopped dragging

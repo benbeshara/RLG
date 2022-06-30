@@ -42,29 +42,9 @@ public:
   
   virtual Rectangle GetCorrectedDimensions() { return GetDimensions(); };
   
-  [[nodiscard]] float GetPointScale() const { return pointScale; };
-  
-  void SetPointScale(float scale) { pointScale = scale; };
-  
-  [[nodiscard]] Vector2 GetGuiScale() const { return guiScale; };
-  
-  void SetGuiScale(Vector2 scale) { guiScale = scale; };
-  
   Vector2 ContainerOffset = {0, 0};
   
-  [[nodiscard]] float GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const {
-    // TODO: Snapping
-    switch (dimension) {
-      case SCALE_DIMENSIONS::X:
-        return base * guiScale.x;
-      case SCALE_DIMENSIONS::Y:
-        return base * guiScale.y;
-      case SCALE_DIMENSIONS::POINT:
-        return base * pointScale;
-      default:
-        return base;
-    }
-  };
+  [[nodiscard]] float GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const;
   
   virtual void Click() {};
 
@@ -72,10 +52,6 @@ protected:
   bool focused{};
   
   bool hidden{};
-  
-  float pointScale = 1.0f;
-  
-  Vector2 guiScale = {1.0f, 1.0f};
 };
 
 #endif /* WIDGET_H */
