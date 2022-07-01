@@ -49,6 +49,8 @@ protected:
   WGConfig_TextInput *config;
   
   Rectangle GetCorrectedDimensions() override;
+  
+  int keyPressTime = 0;
 };
 
 #endif /* WG_TEXTINPUT_H */

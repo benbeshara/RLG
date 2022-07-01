@@ -59,13 +59,17 @@ void WG_TextInput::Draw() {
 
 void WG_TextInput::Step() {
   if (focused) {
-    if (GetKeyPressed() == KEY_BACKSPACE || GetKeyPressed() == KEY_DELETE) {
-      this->config->text = this->config->text.substr(0, this->config->text.length() - 1);
+    keyPressTime++;
+    if (IsKeyDown(KEY_BACKSPACE) || IsKeyDown(KEY_DELETE)) {
+      if (keyPressTime % 5 == 0)
+        this->config->text = this->config->text.substr(0, this->config->text.length() - 1);
     } else {
-      int key = GetCharPressed();
-      if (key > 0)
-        this->config->text.append(1, key);
+      while (int charPressed = GetCharPressed()) {
+        this->config->text.append(1, charPressed);
+      }
     }
+  } else {
+    keyPressTime = 0;
   }
 }
 

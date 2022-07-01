@@ -42,7 +42,6 @@ int snap(float num) {
 }
 
 float Widget::GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const {
-  // TODO: Snapping
   GameStore *store = GameStore::GetInstance();
   
   switch (dimension) {
