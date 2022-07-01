@@ -19,7 +19,7 @@ WG_Button::WG_Button(WGConfig_Button *config) {
 
 void WG_Button::Draw() {
   if (this->hidden) return;
-  
+  this->DebugDraw();
   Color buttonColour;
   if (this->focused) {
     buttonColour = this->config->selectColour;

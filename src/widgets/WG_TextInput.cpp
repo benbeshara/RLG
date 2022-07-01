@@ -9,10 +9,10 @@ WG_TextInput::WG_TextInput(WGConfig_TextInput *config) {
 
 Rectangle WG_TextInput::GetDimensions() {
   return {
-      (float) GetCorrectedDimension(this->config->x, X),
-      (float) GetCorrectedDimension(this->config->y, Y),
-      (float) GetCorrectedDimension(this->config->width, X),
-      (float) GetCorrectedDimension(this->config->height, Y)
+      (float) this->config->x,
+      (float) this->config->y,
+      (float) this->config->width,
+      (float) this->config->height
   };
 }
 
@@ -36,10 +36,13 @@ RESIZE WG_TextInput::SetDimensions(Rectangle newDimensions) {
 
 void WG_TextInput::Draw() {
   if (this->hidden) return;
-  
+  this->DebugDraw();
+//  Rectangle x = this->GetDimensions();
+//  TraceLog(LOG_INFO, std::to_string(x.width).c_str());
+//  DrawRectangleLinesEx(this->GetCorrectedDimensions(), 2, BLUE);
   DrawTextRecEx(GetFontDefault(),
                 this->config->text.c_str(),
-                this->GetDimensions(),
+                this->GetCorrectedDimensions(),
                 this->GetCorrectedDimension(this->config->fontSize, POINT),
                 this->config->fontSpacing,
                 this->config->wordWrap,

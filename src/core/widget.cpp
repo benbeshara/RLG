@@ -49,3 +49,11 @@ float Widget::GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) cons
       return base;
   }
 }
+
+void Widget::DebugDraw() {
+  GameStore *store = GameStore::GetInstance();
+  if (store->getConfig()->getConfig<int>(gameConfig::DEBUG_DRAW) > 0) {
+    DrawRectangleLinesEx(this->GetCorrectedDimensions(), 2,
+                         PURPLE);
+  }
+}

@@ -20,4 +20,5 @@ gameConfig::gameConfig() noexcept {
   this->screenSizeY = j.value("screenSizeY", 768);
   this->frameRate = j.value("frameRate", 60);
   this->initScript = j.value("initScript", "./assets/init.chai");
+  this->debugDraw = j.value("debugDraw", false);
 }

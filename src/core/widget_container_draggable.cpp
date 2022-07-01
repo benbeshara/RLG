@@ -19,7 +19,7 @@ RESIZE Widget_Container_Draggable::SetContainerContentsDimensions() {
   Rectangle ContainerDimensionsThisFrame = GetDimensions();
   
   for (auto &value: containerState) {
-    Rectangle WidgetDimensionsThisFrame = value.second->GetCorrectedDimensions();
+    Rectangle WidgetDimensionsThisFrame = value.second->GetDimensions();
     Vector2 WidgetContainerOffset = value.second->ContainerOffset;
     
     value.second->SetDimensions(

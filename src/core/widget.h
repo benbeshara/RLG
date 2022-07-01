@@ -31,6 +31,8 @@ public:
   
   void FocusCheck();
   
+  void DebugDraw();
+  
   // Implementation-specific functions
   virtual void Draw() {};
   

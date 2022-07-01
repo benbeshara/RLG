@@ -16,6 +16,7 @@ public:
     SCREEN_SIZE_Y,
     FRAMERATE,
     INIT_SCRIPT,
+    DEBUG_DRAW
   };
   
   gameConfig() noexcept;
@@ -35,6 +36,8 @@ public:
       case FRAMERATE:
         this->frameRate = value;
         break;
+      case DEBUG_DRAW:
+        this->debugDraw = value;
       default:
         TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot set unknown config value");
         return 1;
@@ -71,6 +74,9 @@ public:
       case FRAMERATE:
         return this->frameRate;
       
+      case DEBUG_DRAW:
+        return this->debugDraw;
+      
       default:
         TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot get unknown config value");
         return 0;
@@ -94,6 +100,7 @@ protected:
   int screenSizeY = 768;
   int frameRate = 30;
   std::string initScript;
+  int debugDraw = false;
 };
 
 
