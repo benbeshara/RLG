@@ -11,7 +11,7 @@ int main() {
   const int screenHeight = store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::SCREEN_SIZE_Y);
 //  SetConfigFlags(FLAG_WINDOW_RESIZABLE);
   InitWindow(screenWidth, screenHeight, "Widget UI Demo");
-  
+  store->getConfig()->LoadFonts();
   SetTargetFPS(store->getConfig()->getConfig<int>(gameConfig::E_CONFIG::FRAMERATE));
   
   store->getScript()->loadBuffer(store->getConfig()->getConfig<std::string>(gameConfig::E_CONFIG::INIT_SCRIPT));

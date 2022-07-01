@@ -16,7 +16,8 @@ typedef struct WGConfig_Button {
   int height = 32;
   
   // Appearance
-  Font font = GetFontDefault();
+  Font font;
+  bool hasFont = false;
   int fontSize = 12;
   float fontSpacing = 0.5f;
   bool wordWrap = false;

@@ -16,7 +16,8 @@ public:
     SCREEN_SIZE_Y,
     FRAMERATE,
     INIT_SCRIPT,
-    DEBUG_DRAW
+    DEBUG_DRAW,
+    FONT
   };
   
   gameConfig() noexcept;
@@ -50,6 +51,19 @@ public:
     switch (key) {
       case INIT_SCRIPT:
         this->initScript = value;
+        break;
+      default:
+        TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot set unknown config value");
+        return 1;
+    }
+    return 0;
+  }
+  
+  template<>
+  int setConfig(gameConfig::E_CONFIG key, Font value) {
+    switch (key) {
+      case FONT:
+        this->defaultFont = value;
         break;
       default:
         TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot set unknown config value");
@@ -94,6 +108,20 @@ public:
         return "";
     }
   }
+  
+  template<>
+  Font getConfig(gameConfig::E_CONFIG key) {
+    switch (key) {
+      case FONT:
+        return this->defaultFont;
+      
+      default:
+        TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot get unknown config value");
+        return GetFontDefault();
+    }
+  }
+  
+  void LoadFonts();
 
 protected:
   int screenSizeX = 1024;
@@ -101,6 +129,8 @@ protected:
   int frameRate = 30;
   std::string initScript;
   int debugDraw = false;
+  std::string defaultFontName = "default.ttf";
+  Font defaultFont;
 };
 
 

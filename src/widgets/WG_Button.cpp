@@ -15,6 +15,10 @@ void WG_Button::Click() {
 
 WG_Button::WG_Button(WGConfig_Button *config) {
   this->config = config;
+  if (!this->config->hasFont) {
+    GameStore *store = GameStore::GetInstance();
+    this->config->font = store->getConfig()->getConfig<Font>(gameConfig::FONT);
+  }
 }
 
 void WG_Button::Draw() {

@@ -1,10 +1,15 @@
 #include "WG_TextInput.h"
 #include "raylib.h"
+#include "../core/GameStore.h"
 #include <string>
 #include <utility>
 
 WG_TextInput::WG_TextInput(WGConfig_TextInput *config) {
   this->config = config;
+  if (!this->config->hasFont) {
+    GameStore *store = GameStore::GetInstance();
+    this->config->font = store->getConfig()->getConfig<Font>(gameConfig::FONT);
+  }
 }
 
 Rectangle WG_TextInput::GetDimensions() {
@@ -37,10 +42,8 @@ RESIZE WG_TextInput::SetDimensions(Rectangle newDimensions) {
 void WG_TextInput::Draw() {
   if (this->hidden) return;
   this->DebugDraw();
-//  Rectangle x = this->GetDimensions();
-//  TraceLog(LOG_INFO, std::to_string(x.width).c_str());
-//  DrawRectangleLinesEx(this->GetCorrectedDimensions(), 2, BLUE);
-  DrawTextRecEx(GetFontDefault(),
+  
+  DrawTextRecEx(this->config->font,
                 this->config->text.c_str(),
                 this->GetCorrectedDimensions(),
                 this->GetCorrectedDimension(this->config->fontSize, POINT),

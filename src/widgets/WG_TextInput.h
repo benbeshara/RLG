@@ -13,7 +13,8 @@ typedef struct WGConfig_TextInput {
   int height = 32;
   
   // Appearance
-  Font font = GetFontDefault();
+  Font font;
+  bool hasFont = false;
   int fontSize = 12;
   float fontSpacing = 0.5f;
   bool wordWrap = false;

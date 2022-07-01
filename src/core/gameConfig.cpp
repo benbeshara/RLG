@@ -37,4 +37,20 @@ gameConfig::gameConfig() noexcept {
   this->frameRate = j.value("frameRate", 60);
   this->initScript = j.value("initScript", "./assets/init.chai");
   this->debugDraw = j.value("debugDraw", false);
+  this->defaultFontName = j.value("defaultFontName", "default.ttf");
+}
+
+// Fonts must be loaded after window init, so we call this explicitly afterward
+void gameConfig::LoadFonts() {
+  char fontName[256];
+  sprintf(fontName, "assets/%s", this->defaultFontName.c_str());
+  
+  Font font = LoadFontEx(
+      fontName,
+      32,
+      nullptr,
+      250
+  );
+  
+  this->defaultFont = font;
 }
