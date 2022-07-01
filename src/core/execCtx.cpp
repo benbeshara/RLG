@@ -18,13 +18,29 @@ static void setGuiCanvasScale(Vector2 canvasSize) {
 }
 
 void execCtx::parseFile(const std::string &fileName) {
-  std::ifstream i(fileName);
+  char fn_json[256];
+  char fn_bin[256];
+  sprintf(fn_json, "%s%s", fileName.c_str(), ".json");
+  sprintf(fn_bin, "%s%s", fileName.c_str(), ".bin");
+  std::ifstream i;
+  i.open(fn_json);
+  if (i.is_open()) {
+    nlohmann::json j;
+    i >> j;
+    std::ofstream o;
+    o.open(fn_bin);
+    nlohmann::json::to_cbor(j, o);
+    o.close();
+    i.close();
+  }
+  
+  i.open(fn_bin);
   if (!i.is_open()) {
-    TraceLog(LOG_WARNING, "ParseFile: Script not found");
+    TraceLog(LOG_WARNING, "Parse Error: Layout not found");
     return;
   }
-  nlohmann::json j;
-  i >> j;
+  
+  nlohmann::json j = nlohmann::json::from_cbor(i);
   
   this->parseLayout(j);
 }

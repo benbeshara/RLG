@@ -8,13 +8,29 @@
 #include "raylib.h"
 
 gameConfig::gameConfig() noexcept {
-  std::ifstream i("config.json");
+  // Check to see if we have the config in JSON
+  // If we do, convert it to CBOR and load that instead
+  // Otherwise, go straight to the CBOR
+  std::ifstream i;
+  i.open("config.json");
+  
+  if (i.is_open()) {
+    nlohmann::json j;
+    i >> j;
+    std::ofstream o;
+    o.open("config.bin");
+    nlohmann::json::to_cbor(j, o);
+    o.close();
+    i.close();
+  }
+  
+  i.open("config.bin");
   if (!i.is_open()) {
     TraceLog(LOG_WARNING, "Config file not found!");
     return;
   }
-  nlohmann::json j;
-  i >> j;
+  
+  nlohmann::json j = nlohmann::json::from_cbor(i);
   
   this->screenSizeX = j.value("screenSizeX", 1024);
   this->screenSizeY = j.value("screenSizeY", 768);
