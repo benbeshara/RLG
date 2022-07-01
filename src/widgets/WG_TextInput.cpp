@@ -53,9 +53,13 @@ void WG_TextInput::Draw() {
 
 void WG_TextInput::Step() {
   if (focused) {
-    int key = GetCharPressed();
-    if (key > 0)
-      this->config->text.append(1, key);
+    if (GetKeyPressed() == KEY_BACKSPACE || GetKeyPressed() == KEY_DELETE) {
+      this->config->text = this->config->text.substr(0, this->config->text.length() - 1);
+    } else {
+      int key = GetCharPressed();
+      if (key > 0)
+        this->config->text.append(1, key);
+    }
   }
 }
 
