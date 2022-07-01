@@ -38,6 +38,7 @@ gameConfig::gameConfig() noexcept {
   this->initScript = j.value("initScript", "./assets/init.chai");
   this->debugDraw = j.value("debugDraw", false);
   this->defaultFontName = j.value("defaultFontName", "default.ttf");
+  this->snapSize = j.value("snapSize", 1);
 }
 
 // Fonts must be loaded after window init, so we call this explicitly afterward

@@ -35,16 +35,22 @@ void Widget::FocusCheck() {
   }
 }
 
+int snap(float num) {
+  GameStore *store = GameStore::GetInstance();
+  int snapSize = store->getConfig()->getConfig<int>(gameConfig::SNAPSIZE);
+  return snapSize * round(num / snapSize);
+}
+
 float Widget::GetCorrectedDimension(float base, SCALE_DIMENSIONS dimension) const {
   // TODO: Snapping
   GameStore *store = GameStore::GetInstance();
   
   switch (dimension) {
     case SCALE_DIMENSIONS::X:
-      return base * store->getState()->GetGuiScale().x;
+      return snap(base) * store->getState()->GetGuiScale().x;
     case SCALE_DIMENSIONS::Y:
     case SCALE_DIMENSIONS::POINT:
-      return base * store->getState()->GetGuiScale().y;
+      return snap(base) * store->getState()->GetGuiScale().y;
     default:
       return base;
   }

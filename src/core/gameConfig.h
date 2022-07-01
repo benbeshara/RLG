@@ -17,7 +17,8 @@ public:
     FRAMERATE,
     INIT_SCRIPT,
     DEBUG_DRAW,
-    FONT
+    FONT,
+    SNAPSIZE
   };
   
   gameConfig() noexcept;
@@ -39,6 +40,10 @@ public:
         break;
       case DEBUG_DRAW:
         this->debugDraw = value;
+        break;
+      case SNAPSIZE:
+        this->snapSize = value;
+        break;
       default:
         TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot set unknown config value");
         return 1;
@@ -91,6 +96,9 @@ public:
       case DEBUG_DRAW:
         return this->debugDraw;
       
+      case SNAPSIZE:
+        return this->snapSize;
+      
       default:
         TraceLog(LOG_WARNING, "gameConfig.cpp: Cannot get unknown config value");
         return 0;
@@ -131,6 +139,7 @@ protected:
   int debugDraw = false;
   std::string defaultFontName = "default.ttf";
   Font defaultFont;
+  int snapSize = 1;
 };
 
 

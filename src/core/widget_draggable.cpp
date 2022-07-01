@@ -5,8 +5,9 @@
 
 void Widget_Draggable::detect_drag() {
   // Are we holding the button down in the right spot? Are we focused?
-  if (CheckCollisionPointRec(GetMousePosition(), this->GetCorrectedDimensions()) &&
-      IsMouseButtonDown(MOUSE_LEFT_BUTTON) && this->focused) {
+  if ((CheckCollisionPointRec(GetMousePosition(), this->GetCorrectedDimensions()) &&
+       IsMouseButtonDown(MOUSE_LEFT_BUTTON) && this->focused) ||
+      (this->is_dragging && IsMouseButtonDown(MOUSE_LEFT_BUTTON))) {
     this->delta.x = static_cast<int>(GetMousePosition().x - this->GetCorrectedDimensions().x);
     this->delta.y = static_cast<int>(GetMousePosition().y - this->GetCorrectedDimensions().y);
     this->is_dragging = true;

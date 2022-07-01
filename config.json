@@ -3,5 +3,6 @@
   "screenSizeY": 768,
   "frameRate": 60,
   "initScript": "./assets/init.chai",
-  "debugDraw": false
+  "debugDraw": false,
+  "snapSize": 8
 }
