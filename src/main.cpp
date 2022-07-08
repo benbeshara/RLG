@@ -20,7 +20,7 @@ int main() {
   while (!WindowShouldClose()) {
     BeginDrawing();
     
-    ClearBackground(RAYWHITE);
+    ClearBackground(WHITE);
     
     store->getState()->GameLoop();
     
