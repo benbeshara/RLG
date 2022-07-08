@@ -28,7 +28,7 @@ set(CORE
         src/core/gameConfig.cpp
         src/core/gameConfig.h
         src/core/scriptFns.h
-        )
+        src/core/textRectEX.h)
 
 set(WIDGETS
         src/widgets/WG_TextInput.cpp

@@ -1,6 +1,7 @@
 #include "WG_TextInput.h"
 #include "raylib.h"
 #include "../core/GameStore.h"
+#include "../core/textRectEX.h"
 #include <string>
 #include <utility>
 
