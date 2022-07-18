@@ -11,6 +11,7 @@ class State {
 protected:
   uint64_t widgetCount = 0;
   Vector2 guiScale = {1.0f, 1.0f};
+  bool doQuit = false;
 
 public:
   uint64_t AddWidget(Widget *, const std::optional<std::string> &widgetName = std::nullopt,
@@ -48,6 +49,10 @@ public:
   std::pair<uint64_t, uint64_t> GetWidgetIDByName(const std::string &name);
   
   Widget *GetWidgetByName(const std::string &widgetName);
+  
+  bool isQuitting() { return this->doQuit | WindowShouldClose(); }
+  
+  void quit() { this->doQuit = true; }
 };
 
 #endif /* STATE_H */

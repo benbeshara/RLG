@@ -18,7 +18,13 @@ static void changeText(const std::string &widget, const std::string &text) {
   t->SetText(text);
 }
 
+static void quit() {
+  GameStore *store = GameStore::GetInstance();
+  store->quit();
+}
+
 static void addFuncs(chaiscript::ChaiScript *ctx) {
   ctx->add(chaiscript::fun(&doButtonClick), "doButtonClick");
   ctx->add(chaiscript::fun(&changeText), "changeText");
+  ctx->add(chaiscript::fun(&quit), "quit");
 }

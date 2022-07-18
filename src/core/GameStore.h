@@ -33,6 +33,8 @@ public:
   execCtx *getScript() { return script; }
   
   gameConfig *getConfig() { return config; }
+  
+  void quit();
 };
 
 

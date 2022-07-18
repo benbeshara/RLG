@@ -13,3 +13,7 @@ GameStore *GameStore::GetInstance() {
   }
   return store;
 }
+
+void GameStore::quit() {
+  store->getState()->quit();
+}

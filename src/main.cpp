@@ -17,7 +17,7 @@ int main() {
   store->getScript()->loadBuffer(store->getConfig()->getConfig<std::string>(gameConfig::E_CONFIG::INIT_SCRIPT));
   store->getScript()->run();
   
-  while (!WindowShouldClose()) {
+  while (!store->getState()->isQuitting()) {
     BeginDrawing();
     
     ClearBackground(WHITE);
